@@ -1,7 +1,7 @@
 from django.urls import path
 from . import views
 
-from store.controller import authview
+from store.controller import authview, cart
 
 urlpatterns = [
     path('', views.home, name='home'),
@@ -12,4 +12,5 @@ urlpatterns = [
     path('register/',authview.register, name="register" ),
     path('login', authview.loginpage, name="loginpage"),
     path('logout/', authview.logoutpage, name="logout"),
+    path('add-to-cart', cart.addtocart, name="addtocart"),
 ]
