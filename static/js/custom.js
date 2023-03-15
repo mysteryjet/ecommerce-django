@@ -46,6 +46,27 @@ $(document).ready(function () {
             }
         });
     });
+    // FUNCIÓN PARA AGREGAR A WISHLIST
+    $('.addToWishlist').click(function (e) {
+        e.preventDefault();
+
+        var product_id = $(this).closest('.product_data').find('.prod_id').val();
+        var token = $('input[name=csrfmiddlewaretoken]').val();
+        $.ajax({
+            method: "POST",
+            url: "/add-to-wishlist",
+            data: {
+                'product_id':product_id,
+                csrfmiddlewaretoken:token
+            },
+            success: function(response) {
+                console.log(response)
+                alertify.success(response.status)
+            }
+        });
+    });
+
+
     // FUNCIÓN PARA CAMBIAR CANTIDAD EN CART
     $('.changeQuantity').click(function (e) {
         e.preventDefault();
@@ -69,7 +90,7 @@ $(document).ready(function () {
     });
 
     // FUNCIÓN PARA ELIMINAR PRODUCTO DEL CARRITO
-    $('.delete-cart-item').click(function (e) {
+    $(document).on('click','.delete-cart-item', function (e) { 
         e.preventDefault();
 
         var product_id = $(this).closest('.product_data').find('.prod_id').val();
@@ -86,6 +107,28 @@ $(document).ready(function () {
                 console.log(response)
                 alertify.success(response.status)
                 $('.cartdata').load(location.href + " .cartdata");
+            }
+        });
+    });
+
+    // FUNCIÓN PARA ELIMINAR WISHLIST
+    $(document).on('click','.delete-wishlist-item', function (e) { 
+        e.preventDefault();
+
+        var product_id = $(this).closest('.product_data').find('.prod_id').val();
+        var token = $('input[name=csrfmiddlewaretoken]').val();
+
+        $.ajax({
+            method: "POST",
+            url: "/delete-wishlist-item",
+            data: {
+                'product_id':product_id,
+                csrfmiddlewaretoken:token
+            },
+            success: function(response) {
+                console.log(response)
+                alertify.success(response.status)
+                $('.wishdata').load(location.href + " .wishdata");
             }
         });
     });
