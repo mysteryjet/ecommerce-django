@@ -14,10 +14,10 @@
         <div class="col-md-12">
             <h1>Collections</h1>
             <hr class="border border-danger border-2 opacity-50">
-            <div class="row">
+            <div class="row gy-3">
             {% for item in category %}
-                <div class="col-md-3">
-                    <div class="card h-100">
+                <div class="col-md-4">
+                    <div class="card">
                         <a href="{% url 'collectionsview' item.slug %}">
                         <div class="card-body">
                             <div class="category-image">

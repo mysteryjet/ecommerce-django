@@ -15,16 +15,16 @@
         <div class="col-md-12">
             <h1>{{ category.name }}</h1>
             <hr class="border border-danger border-2 opacity-50">
-            <div class="row">
+            <div class="row gy-3">
             {% for item in products %}
                 <div class="col-md-3">
-                    <div class="card">
+                    <div class="card h-100">
                         <a href="{% url 'productview' item.category.slug item.slug %}">
                         <div class="card-body">
                             <div class="category-image">
                                 <img src="{{ item.product_image.url }}" alt="Product image" class="w-100"/>
                             </div>
-                            <h4 class="text-center">{{ item.name }}</h4>
+                            <h4 class="card-title text-center">{{ item.name }}</h4>
                             <span class="float-start">{{ item.original_price }}</span>
                             <span class="float-end">{{ item.selling_price }}</span>
                         </div>
